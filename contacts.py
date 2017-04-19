@@ -39,7 +39,7 @@ import bisect
 n = int(input().strip())
 contacts = []
 
-for _ in range(n):
+for i in range(n):
     op, contact = input().strip().split(' ')
 
     if op == 'add':
