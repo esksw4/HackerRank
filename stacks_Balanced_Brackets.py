@@ -26,15 +26,40 @@
 # The string {{[[(())]]}} meets both criteria for being a balanced string, so we print YES on a new line.
 
 # http://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/
-
-def is_matched(expression):
-    half = int(len(expression)/2)
+###################################04/19/2017
+# def is_matched(expression):
+#     half = int(len(expression)/2)
     
+
+# t = int(input().strip())
+# for a0 in range(t):
+#     expression = input().strip()
+#     print(expression)
+#     if is_matched(expression) == True:
+#         print("YES")
+#     else:
+#         print("NO")
+##################################04/20/2017
+def is_matched(expression):
+    if len(expression)%2 == 1:
+        return False
+    tempStack = []
+    dict = {'{':'}', '[':']','(':')'}
+   
+    for i in expression:
+        if dict.get(i):
+            tempStack.insert(0,dict[i])
+        else:
+            if len(tempStack) == 0 or i != tempStack[0]:
+                return False
+            tempStack.pop(0)
+    return len(tempStack) == 0
+                  
 
 t = int(input().strip())
 for a0 in range(t):
     expression = input().strip()
-    print(expression)
+    #print(expression)
     if is_matched(expression) == True:
         print("YES")
     else:
