@@ -37,6 +37,11 @@
 
 import sys
 
+#!/bin/python3
+
+import sys
+import bisect
+
 def make_change(coins, n):
     comb = [0 for j in range(n+1)]
     comb[0] = 1
@@ -45,20 +50,20 @@ def make_change(coins, n):
         if currCoin == 1:
             comb = [1 for j in range(n+1)]
             coins.pop(0)
-        else: 
-            #print(currCoin)
+        else:
             for i in range(currCoin, n+1):
-                #print('amount: ', i)
-                #print('currCoin: ', currCoin)
-                #print('comb: ', comb)
                 if i >= currCoin:
                     comb[i] += comb[i-currCoin]
-            coins.pop(0)
-                    
+            coins.pop(0) 
     return comb[n]
     
 
 n,m = input().strip().split(' ')
 n,m = [int(n),int(m)]
-coins = [int(coins_temp) for coins_temp in input().strip().split(' ')]
+# needed to sort the input coins just in case its in 100, 1, 9,2, (out of order)
+coins = []
+for coins_temp in input().strip().split(' '):
+    bisect.insort(coins, int(coins_temp))
 print(make_change(coins, n))
+
+
