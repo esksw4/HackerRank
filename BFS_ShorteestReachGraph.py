@@ -22,6 +22,11 @@ class Graph(object):
         while _queue:
             for i in _queue:
                 visited[i] = 6 * __level
+            # _queue = set()
+            # for _val in _queue
+            #   for _adjacent in self._graph[_val]
+            #       if visited[_adjacent] == -1
+            #           _queue.add(_adjacent)
             _queue = set([_adjacent for _val in _queue for _adjacent in self._graph[_val] if visited[_adjacent] == -1])
             __level += 1
         
